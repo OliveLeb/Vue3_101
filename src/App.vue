@@ -1,10 +1,16 @@
 <template>
   <h1>Hello World !</h1>
+  <Avatar />
 </template>
 
 <script>
+import Avatar from './components/Avatar.vue';
+
 export default {
     name: 'App',
+    components: {
+      Avatar,
+    }
 }
 </script>
 
