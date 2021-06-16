@@ -12,24 +12,40 @@
                 height="100%"
                 preserveAspectRatio="xMidYMid slice"
                 width="100%"
-                xlink:href="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
+                :xlink:href="image"
                 style="height:120px; width:120px"
             />
             <circle class="border" cx="60" cy="60" r="60"></circle>
             </g>
         </svg>
-        <div class="badge" style="background: #5ad539"></div>
-        <div class="name">CESAR</div>
+        <div class="badge" :style="{background: badgeColor}"></div>
+        <div class="name">{{name}}</div>       
     </div>
 </template>
 
 <script>
 export default {
-    name : 'Avatar'
+    name : 'Avatar',
+    props: {
+        name : {
+            type: String,
+            required: true,
+            validator: (value) => {
+                return value.length >= 3;
+                }
+        },
+        badgeColor : {
+            type: String,
+        },
+        image : {
+            type: String,
+            default: 'images/default-avatar.jpg'
+        }
+    }
 }
 </script>
 
-<style>
+<style scoped>
 .avatar {
   position: relative;
   box-sizing: border-box;
