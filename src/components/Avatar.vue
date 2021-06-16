@@ -3,7 +3,7 @@
         <svg role="none" style="height:120px; width:120px">
             <mask id="circle">
             <circle cx="60" cy="60" fill="white" r="60"></circle>
-            <circle cx="102" cy="102" fill="black" r="15"></circle>
+            <circle v-if="badgeColor" cx="102" cy="102" fill="black" r="15"></circle>
             </mask>
             <g mask="url(#circle)">
             <image
@@ -18,7 +18,7 @@
             <circle class="border" cx="60" cy="60" r="60"></circle>
             </g>
         </svg>
-        <div class="badge" :style="{background: badgeColor}"></div>
+        <div class="badge" v-if="badgeColor" :style="{background: badgeColor}"></div>
         <div class="name">{{name}}</div>       
     </div>
 </template>
