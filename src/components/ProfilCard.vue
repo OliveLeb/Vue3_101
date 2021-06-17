@@ -1,7 +1,7 @@
 <template>
     <div class="card-container">
-        <span v-if="status" class="pro">PRO</span>
-        <img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" />
+        <span v-if="pro" class="pro">PRO</span>
+        <img class="round" :src='img' alt="user" />
         <h3>{{name}}</h3>
         <h6>{{city}}</h6>
         <p>{{job}}</p>
@@ -13,7 +13,7 @@
                 Following
             </button>
         </div>
-        <div class="skills">
+        <div v-if="skills" class="skills">
             <h6>Skills</h6>
             <ul>
                 <li v-for="skill in skills" :key=skill>
@@ -28,7 +28,7 @@
 export default {
     name: 'ProfilCard',
     props: {
-        status: {
+        pro: {
             type:Boolean,
         },
         name:{
@@ -37,19 +37,18 @@ export default {
         },
         img: {
             type:String,
-            required: true,
+            default: 'images/default-avatar.jpg'
         },
         city: {
             type:String,
-            required: true,
+            default :'-'
         },
         job: {
             type:String,
-            required: true,
+            default :'-'
         },
         skills: {
             type:Array,
-            required: true,
         },
     }
 }
