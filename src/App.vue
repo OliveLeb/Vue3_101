@@ -6,7 +6,7 @@
   city='New York' job='Front end developper'
   :skills="['UI / UX','HTML','CSS','JavaScript','React','Node']"
   />
-  <InputSpinner :initCounter="0" />
+  <InputSpinner v-for="(counter,i) in initCounters" :initCounter="counter" :key="i" />
 </template>
 
 <script>
@@ -20,6 +20,11 @@ export default {
       Avatar,
       ProfilCard,
       InputSpinner,
+    },
+    data() {
+      return {
+        initCounters : ['0','0','20','0','40','65']
+      }
     }
 }
 </script>
