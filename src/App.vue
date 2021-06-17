@@ -6,7 +6,7 @@
   city='New York' job='Front end developper'
   :skills="['UI / UX','HTML','CSS','JavaScript','React','Node']"
   />
-  <InputSpinner />
+  <InputSpinner :initCounter="0" />
 </template>
 
 <script>

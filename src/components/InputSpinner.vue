@@ -2,7 +2,7 @@
     <div class="stepper horizontal">
         <img src="https://alikinvv.github.io/stepper/build/img/arrow.svg" class="arrow top" alt="" />
         <div class="box">
-            <div class="numbers1">255</div>
+            <div class="numbers1">{{counter}}</div>
         </div>
         <img src="https://alikinvv.github.io/stepper/build/img/arrow.svg" class="arrow bottom" alt="" />
     </div>
@@ -11,6 +11,17 @@
 <script>
 export default {
     name: 'InputSpinner',
+    props : {
+        initCounter: {
+            type : Number,
+            default : 0
+        }
+    },
+    data() {
+        return {
+            counter : this.initCounter,
+        }
+    }
 }
 </script>
 
