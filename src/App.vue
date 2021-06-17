@@ -23,7 +23,7 @@ export default {
     },
     data() {
       return {
-        initCounters : ['0','0','20','0','40','65']
+        initCounters : [0,0,20,0,40,65]
       }
     }
 }

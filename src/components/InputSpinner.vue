@@ -1,10 +1,10 @@
 <template>
     <div class="stepper horizontal">
-        <img src="https://alikinvv.github.io/stepper/build/img/arrow.svg" class="arrow top" alt="" />
+        <img src="https://alikinvv.github.io/stepper/build/img/arrow.svg" class="arrow top" alt="" @click="decrement"/>
         <div class="box">
             <div class="numbers1">{{counter}}</div>
         </div>
-        <img src="https://alikinvv.github.io/stepper/build/img/arrow.svg" class="arrow bottom" alt="" />
+        <img src="https://alikinvv.github.io/stepper/build/img/arrow.svg" class="arrow bottom" alt="" @click="increment"/>
     </div>
 </template>
 
@@ -20,6 +20,14 @@ export default {
     data() {
         return {
             counter : this.initCounter,
+        }
+    },
+    methods: {
+        increment() {
+            return this.counter += 1;
+        },
+        decrement() {
+            return this.counter -= 1;
         }
     }
 }
