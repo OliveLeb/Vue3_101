@@ -37,7 +37,7 @@ export default {
     watch: {
       counter(value) {
         if(value <= 0) this.counter = 0;
-        if( value >= 100 ) this.counter = 10;
+        if( value >= 100 ) this.counter = 100;
       }
     },
 }
