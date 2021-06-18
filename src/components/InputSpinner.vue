@@ -15,7 +15,11 @@ export default {
         initCounter: {
             type : Number,
             default : 0
-        }
+        },
+        step: {
+          type : Number,
+          default : 1
+        },
     },
     data() {
         return {
@@ -24,12 +28,18 @@ export default {
     },
     methods: {
         increment() {
-            return this.counter += 1;
+            this.counter += 1 * this.step;
         },
         decrement() {
-            return this.counter -= 1;
+            this.counter -= 1 * this.step;
         }
-    }
+    },
+    watch: {
+      counter(value) {
+        if(value <= 0) this.counter = 0;
+        if( value >= 100 ) this.counter = 10;
+      }
+    },
 }
 </script>
 

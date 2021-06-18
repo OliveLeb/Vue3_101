@@ -6,7 +6,7 @@
   city='New York' job='Front end developper'
   :skills="['UI / UX','HTML','CSS','JavaScript','React','Node']"
   />
-  <InputSpinner v-for="(counter,i) in initCounters" :initCounter="counter" :key="i" />
+  <InputSpinner v-for="(counter,i) in initCounters" :initCounter="counter" :key="i" :step="10"/>
 </template>
 
 <script>
