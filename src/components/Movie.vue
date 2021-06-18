@@ -1,8 +1,7 @@
 <template>
     <div class="row">
-        <MovieCard v-for="movie in movieList" :key="movie.id" :title="movie.title" :date="movie.date" 
-        :category="movie.category" :resume="movie.resume" :like="movie.like" :nbLike="movie.nbLike" :comment="movie.comment"
-        :bookmark="movie.bookmark" :trailer="movie.trailer" :image="movie.image"
+        <MovieCard v-for="movie in movieList" :key="movie.id" 
+        v-bind="movie"
         />
     </div>
 </template>

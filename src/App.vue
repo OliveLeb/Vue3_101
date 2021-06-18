@@ -33,6 +33,8 @@ export default {
 </script>
 
 <style>
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
+
     body{
       font-family: Arial, sans-serif;
     }

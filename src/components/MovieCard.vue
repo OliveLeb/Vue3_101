@@ -3,21 +3,21 @@
         <div class="wrapper" :style="{backgroundImage:`url(${image})`}">
             <div class="header">
             <div class="date">
-                <span class="day">12</span>
-                <span class="month">Aug</span>
-                <span class="year">2016</span>
+                <span class="day">{{splitDate[0]}}</span>
+                <span class="month">{{splitDate[1]}}</span>
+                <span class="year">{{splitDate[2]}}</span>
             </div>
             <ul class="menu-content">
                 <li>
-                <a href="#" class="fa fa-bookmark-o"></a>
+                <a href="#" :class="['fa', statusBookmark ? 'fa-bookmark' : 'fa-bookmark-o']" @click.prevent="toggleStatus('statusBookmark')"></a>
                 </li>
                 <li>
-                <a href="#" class="fa fa-heart-o" :class=" statusLike ? 'fa-heart' : 'fa-heart-o' " @click="handleInput">
-                    <span>{{nbLike}}</span>
+                <a href="#" :class="['fa',statusLike ? 'fa-heart' : 'fa-heart-o']" @click.prevent="toggleStatus('statusLike')">
+                    <span>{{myNbLikes}}</span>
                 </a>
                 </li>
                 <li>
-                <a href="#" class="fa fa-comment-o">
+                <a href="#" class="fa fa-comment-o" >
                     <span>{{comment}}</span>
                 </a>
                 </li>
@@ -25,14 +25,14 @@
             </div>
             <div class="data">
             <div class="content">
-                <span class="author">{{category}}</span>
+                <span class="category">{{category}}</span>
                 <h1 class="title">
                 <a href="#">{{title}}</a>
                 </h1>
                 <p class="text">
                 {{resume}}
                 </p>
-                <a :href="trailer" class="button">
+                <a :href="trailer" class="button" target="_blank" rel="noopener noreferrer">
                 Trailer
                 </a>
             </div>
@@ -45,43 +45,34 @@
 export default {
     name : 'MovieCard', 
     props : {
-        // movie: {
-        //     type: Object,
-        //     required: true,
-        // }
+        id: {
+            type: String,
+            required: true,
+        },
         title: {
             type: String,
             required: true,
         },
-        date : {
-            type : String,
-            required: true,
-        },
-        category : {
-            type: String,
-            required: true,
-        },
-        resume : {
-            type: String,
-            required: true,
-        },
+        date : String,
+        category : String,
+        resume : String,
         like : {
             type : Boolean,
             default: false,
         },
         nbLike : {
-            type: Number
+            type: Number,
+            default: 0
         },
         comment : {
-            type: Number
+            type: Number,
+            default: 0
         },
         bookmark : {
             type : Boolean,
             default : false
         },
-        trailer : {
-            type: String
-        },
+        trailer : String,
         image : {
             type: String,
             required: true,
@@ -89,19 +80,34 @@ export default {
     },
     data() {
         return {
-            statusLike : this.like
+            statusLike : this.like,
+            myNbLikes : this.nbLike,
+            statusBookmark : this.bookmark
         }
     },
     methods: {
-        handleInput() {
-            this.statusLike = ! this.statusLike
+        toggleStatus(status) {
+            if(status === 'statusLike') {
+                this.statusLike = ! this.statusLike;
+                return;
+            }
+            if(status === 'statusBookmark') return this.statusBookmark = ! this.statusBookmark;
+        }
+    },
+    watch: {
+        statusLike(value) {
+            this.myNbLikes += value ? 1 : -1;
+        }
+    },
+    computed: {
+        splitDate() {
+            return this.date.split(' ');
         }
     }
 }
 </script>
 
 <style scoped>
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
 
 .card {
   float: left;
@@ -163,7 +169,7 @@ export default {
   position: relative;
   z-index: 1;
 }
-.card .author {
+.card .category {
   font-size: 12px;
 }
 .card .title {
